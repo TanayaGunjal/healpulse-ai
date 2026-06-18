@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, classification_report
 
 df_raw = pd.read_csv('hospital_readmission_dataset.csv')
 df_clean = pd.read_csv('cleaned_hospital_readmission_dataset.csv')
@@ -14,6 +15,16 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 model = RandomForestClassifier(random_state=42)
 model.fit(X_train, y_train)
+
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred) * 100
+
+print(f"\n==========================================")
+print(f"       Model Accuracy: {accuracy:.2f}%")
+print(f"==========================================\n")
+print("Detailed Classification Report:")
+print(classification_report(y_test, y_pred, target_names=['No Readmission', 'Readmission']))
+
 plt.figure(figsize=(15, 5))
 
 plt.subplot(1, 3, 1)
