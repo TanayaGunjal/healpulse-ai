@@ -24,6 +24,7 @@ print(f"       Model Accuracy: {accuracy:.2f}%")
 print(f"==========================================\n")
 print("Detailed Classification Report:")
 print(classification_report(y_test, y_pred, target_names=['No Readmission', 'Readmission']))
+print("Generating charts, please wait...")
 
 plt.figure(figsize=(15, 5))
 
